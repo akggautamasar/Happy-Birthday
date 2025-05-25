@@ -1,125 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Happy Birthday</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <title>Happy Birthday!</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-  <head>
-  ...
-  <style>
-    #start-music,
-    #toggle-mute {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      padding: 10px 15px;
-      background-color: #f06292;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      z-index: 9999;
-      cursor: pointer;
-    }
-  </style>
-  </head>
 <body>
   <div class="container">
-    <div class="one">
-      <img src="https://i.imgur.com/OVr5XGz.png" alt="gift" />
-      <h1>Happy Birthday!</h1>
+    <div class="one">Happy Birthday!</div>
+    <div class="baloons">
+      <img src="img/balloon1.png" class="balloon balloon1">
+      <img src="img/balloon2.png" class="balloon balloon2">
+      <img src="img/balloon3.png" class="balloon balloon3">
     </div>
-
-    <div class="two">
-      <p>Wishing you a day filled with love, laughter, and cake!</p>
-    </div>
-
-    <div class="three">
-      <p>You are special, and this day is all yours!</p>
-    </div>
-
-    <div class="four">
-      <div class="text-box">
-        <p>May your year be as sweet as your birthday cake. Cheers to more success and happiness!</p>
-        <div class="fake-btn">Love & Hugs</div>
-      </div>
-    </div>
-
-    <div class="five">
-      <p class="idea-5">Let’s Celebrate <span>YOU</span>!</p>
-    </div>
-
-    <div class="six">
-      <img src="https://i.imgur.com/3JwaP0g.png" alt="birthday person" />
-      <img class="hat" src="https://i.imgur.com/WWjyuXY.png" alt="hat" />
-    </div>
-
-    <div class="seven baloons">
-      <img src="https://i.imgur.com/cQmUR1X.png" alt="balloon" />
-      <img src="https://i.imgur.com/VABk2Uk.png" alt="balloon" />
-      <img src="https://i.imgur.com/j1uWAkL.png" alt="balloon" />
-    </div>
-
-    <div class="eight">
-      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>
-      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>
-      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>
-      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>
-      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>
-      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>
-      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>
-      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>
-      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>
-    </div>
-
-    <div class="wish">
-      <h1 class="wish-hbd">Happy Birthday <span>Dear Friend</span>!</h1>
-      <h5>You make the world a better place just by being in it.</h5>
-    </div>
-
-    <div class="nine">
-      <p>— Sent with lots of love!</p>
-    </div>
-
-    <div id="replay">
-      <p>Replay</p>
-    </div>
+    <canvas id="confetti-canvas"></canvas>
   </div>
-  <audio id="bg-music" loop>
-  <source src="img/happy-birthday-334876.mp3" type="audio/mpeg" />
-  Your browser does not support the audio element.
-</audio>
 
-<!-- Play button shown at the start -->
-<button id="start-music">Play Music</button>
+  <!-- Music Controls -->
+  <audio id="bg-music" src="img/happy-birthday-334876.mp3" loop></audio>
+  <button id="start-music">Play Music</button>
+  <button id="toggle-mute" style="display: none;">Mute Music</button>
 
-<!-- Mute/Unmute toggle shown after music starts -->
-<button id="toggle-mute" style="display: none;">Mute Music</button>
-  <script>
-  const music = document.getElementById('bg-music');
-  const startButton = document.getElementById('start-music');
-  const toggleButton = document.getElementById('toggle-mute');
-
-  startButton.addEventListener('click', () => {
-    music.play().then(() => {
-      startButton.style.display = 'none';
-      toggleButton.style.display = 'inline-block';
-    }).catch(error => {
-      console.log('Autoplay failed:', error);
-    });
-  });
-
-  toggleButton.addEventListener('click', () => {
-    if (music.muted) {
-      music.muted = false;
-      toggleButton.innerText = 'Mute Music';
-    } else {
-      music.muted = true;
-      toggleButton.innerText = 'Unmute Music';
-    }
-  });
-                               </script>
+  <script src="script.js"></script>
 </body>
 </html>
