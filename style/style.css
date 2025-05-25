@@ -279,3 +279,69 @@ body {
     font-size: 1.5rem;
   }
 }
+body {
+  margin: 0;
+  overflow: hidden;
+  background: #fff0f5;
+  font-family: "Work Sans", sans-serif;
+}
+
+.baloons img {
+  width: 80px;
+  position: absolute;
+  bottom: -100px;
+  animation: floatUp 10s infinite ease-in;
+}
+
+.balloon1 {
+  left: 20%;
+  animation-delay: 0s;
+}
+.balloon2 {
+  left: 50%;
+  animation-delay: 2s;
+}
+.balloon3 {
+  left: 75%;
+  animation-delay: 4s;
+}
+
+@keyframes floatUp {
+  0% {
+    bottom: -100px;
+    transform: translateX(0) rotate(0deg);
+  }
+  50% {
+    transform: translateX(30px) rotate(10deg);
+  }
+  100% {
+    bottom: 110%;
+    transform: translateX(-30px) rotate(-10deg);
+  }
+}
+
+/* Confetti canvas */
+#confetti-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Music Buttons */
+#start-music, #toggle-mute {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 15px;
+  background-color: #f06292;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  z-index: 9999;
+  cursor: pointer;
+  margin-left: 10px;
+}
