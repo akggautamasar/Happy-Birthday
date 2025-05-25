@@ -304,3 +304,81 @@ const resolveFetch = () => {
 };
 
 resolveFetch().then(animationTimeline());
+// Music Controls
+const music = document.getElementById('bg-music');
+const startButton = document.getElementById('start-music');
+const toggleButton = document.getElementById('toggle-mute');
+
+startButton.addEventListener('click', () => {
+  music.play().then(() => {
+    startButton.style.display = 'none';
+    toggleButton.style.display = 'inline-block';
+  }).catch(error => {
+    console.log('Autoplay failed:', error);
+  });
+});
+
+toggleButton.addEventListener('click', () => {
+  music.muted = !music.muted;
+  toggleButton.innerText = music.muted ? 'Unmute Music' : 'Mute Music';
+});
+
+// Confetti
+const canvas = document.getElementById("confetti-canvas");
+const ctx = canvas.getContext("2d");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const confettiCount = 150;
+const confetti = [];
+
+function randomColor() {
+  const colors = ["#fce18a", "#ff726d", "#b48def", "#f4306d"];
+  return colors[Math.floor(Math.random() * colors.length)];
+}
+
+function createConfetti() {
+  for (let i = 0; i < confettiCount; i++) {
+    confetti.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height - canvas.height,
+      r: Math.random() * 6 + 4,
+      d: Math.random() * confettiCount,
+      color: randomColor(),
+      tilt: Math.floor(Math.random() * 10) - 10,
+      tiltAngleIncremental: Math.random() * 0.07 + 0.05,
+      tiltAngle: 0
+    });
+  }
+}
+
+function drawConfetti() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  confetti.forEach((c, i) => {
+    ctx.beginPath();
+    ctx.lineWidth = c.r;
+    ctx.strokeStyle = c.color;
+    ctx.moveTo(c.x + c.tilt + c.r / 2, c.y);
+    ctx.lineTo(c.x + c.tilt, c.y + c.tilt + c.r / 2);
+    ctx.stroke();
+  });
+  updateConfetti();
+  requestAnimationFrame(drawConfetti);
+}
+
+function updateConfetti() {
+  confetti.forEach((c, i) => {
+    c.tiltAngle += c.tiltAngleIncremental;
+    c.y += (Math.cos(c.d) + 3 + c.r / 2) / 2;
+    c.x += Math.sin(c.d);
+    c.tilt = Math.sin(c.tiltAngle - i / 3) * 15;
+
+    if (c.y > canvas.height) {
+      c.y = -10;
+      c.x = Math.random() * canvas.width;
+    }
+  });
+}
+
+createConfetti();
+drawConfetti();
