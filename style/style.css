@@ -297,3 +297,15 @@ body {
     font-weight: lighter;
   }
 }
+#start-music, #toggle-mute {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 15px;
+  background-color: #f06292;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  z-index: 9999;
+  cursor: pointer;
+}
